@@ -24,6 +24,12 @@ struct ExampleView: View {
             .onChange(of: text, debounce: 1, initial: true) { oldText, newText in
                 print("Value changed from \(oldText) to \(newText)")
             }
+            
+        // Using Duration
+        TextField("Another field", text: $text)
+            .onChange(of: text, debounce: .seconds(1), initial: true) { oldText, newText in
+                print("Value changed from \(oldText) to \(newText)")
+            }
     }
 }
 ```
@@ -44,6 +50,14 @@ struct AnotherExampleView: View {
         .onChange(of: counter, debounce: 2, initial: true) {
             print("Counter changed to \(counter) after a 2-second debounce")
         }
+        
+        // Using Duration
+        Button("Increment with Duration") {
+            counter += 1
+        }
+        .onChange(of: counter, debounce: .milliseconds(500), initial: false) {
+            print("Counter changed to \(counter) after a 500ms debounce")
+        }
     }
 }
 ```
@@ -54,7 +68,7 @@ The modifier uses the same parameters as the SwifUICore `.onChange(...)` modifie
 
 - `value`: The property you want to watch.
 
-- `debounce`: The delay (in seconds) before the action runs.
+- `debounce`: The delay (in seconds) before the action runs. Can be specified as a Double value or as a Duration value.
 
 - `initial`: Calls the action immediately when the view appears if true.
 

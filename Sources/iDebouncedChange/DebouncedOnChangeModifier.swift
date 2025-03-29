@@ -12,7 +12,7 @@ struct DebouncedOnChangeModifier<Value: Equatable> {
     @State var task: Task<Void, Never>? = nil
 
     let value: Value
-    let debounceTime: Double
+    let debounce: Duration
     let initial: Bool
     let zeroParamAction: (() -> Void)?
     let twoParamAction: ((Value, Value) -> Void)?

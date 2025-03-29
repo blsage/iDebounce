@@ -15,7 +15,7 @@ extension DebouncedOnChangeModifier: ViewModifier {
             .onChange(of: value, initial: initial) { old, new in
                 task?.cancel()
                 task = Task {
-                    try? await Task.sleep(for: .seconds(debounceTime))
+                    try? await Task.sleep(for: debounce)
                     if !Task.isCancelled {
                         if let zeroParamAction {
                             zeroParamAction()

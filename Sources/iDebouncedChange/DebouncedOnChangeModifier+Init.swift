@@ -11,12 +11,12 @@ import Foundation
 extension DebouncedOnChangeModifier {
     nonisolated init(
         value: Value,
-        debounceTime: Double,
+        debounce: Double,
         initial: Bool,
         action: @escaping () -> Void
     ) {
         self.value = value
-        self.debounceTime = debounceTime
+        self.debounce = .seconds(debounce)
         self.initial = initial
         self.zeroParamAction = action
         self.twoParamAction = nil
@@ -24,12 +24,38 @@ extension DebouncedOnChangeModifier {
 
     nonisolated init(
         value: Value,
-        debounceTime: Double,
+        debounce: Double,
         initial: Bool,
         action: @escaping (Value, Value) -> Void
     ) {
         self.value = value
-        self.debounceTime = debounceTime
+        self.debounce = .seconds(debounce)
+        self.initial = initial
+        self.zeroParamAction = nil
+        self.twoParamAction = action
+    }
+
+    nonisolated init(
+        value: Value,
+        debounce: Duration,
+        initial: Bool,
+        action: @escaping () -> Void
+    ) {
+        self.value = value
+        self.debounce = debounce
+        self.initial = initial
+        self.zeroParamAction = action
+        self.twoParamAction = nil
+    }
+
+    nonisolated init(
+        value: Value,
+        debounce: Duration,
+        initial: Bool,
+        action: @escaping (Value, Value) -> Void
+    ) {
+        self.value = value
+        self.debounce = debounce
         self.initial = initial
         self.zeroParamAction = nil
         self.twoParamAction = action
