@@ -32,12 +32,12 @@ extension View {
     ///         }
     ///     }
     @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-    nonisolated public func onChange<V, Duration>(
+    nonisolated public func onChange<V>(
         of value: V,
-        debounce: Duration,
+        debounce: Double,
         initial: Bool = false,
         _ action: @escaping (_ oldValue: V, _ newValue: V) -> Void
-    ) -> some View where V : Equatable, Duration: BinaryInteger {
+    ) -> some View where V : Equatable {
         modifier(
             DebouncedOnChangeModifier(
                 value: value,

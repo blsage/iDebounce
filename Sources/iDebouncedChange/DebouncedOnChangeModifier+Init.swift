@@ -11,7 +11,7 @@ import Foundation
 extension DebouncedOnChangeModifier {
     nonisolated init(
         value: Value,
-        debounceTime: Duration,
+        debounceTime: Double,
         initial: Bool,
         action: @escaping () -> Void
     ) {
@@ -24,7 +24,7 @@ extension DebouncedOnChangeModifier {
 
     nonisolated init(
         value: Value,
-        debounceTime: Duration,
+        debounceTime: Double,
         initial: Bool,
         action: @escaping (Value, Value) -> Void
     ) {

@@ -8,11 +8,11 @@
 import SwiftUI
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-struct DebouncedOnChangeModifier<Value: Equatable, Duration: BinaryInteger> {
+struct DebouncedOnChangeModifier<Value: Equatable> {
     @State var task: Task<Void, Never>? = nil
 
     let value: Value
-    let debounceTime: Duration
+    let debounceTime: Double
     let initial: Bool
     let zeroParamAction: (() -> Void)?
     let twoParamAction: ((Value, Value) -> Void)?
